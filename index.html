@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+<body>
+
+<!-- Inc -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="http://unpkg.com/portal-vue"></script>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<link rel="stylesheet" href="assets/css/style.css">
+<link href="https://fonts.googleapis.com/css?family=Dancing+Script&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+<!-- MODALS.START -->
+<!-- Actual Website as Modal -->
+<div class="modal fade " id="myModal">
+ <div class="modal-dialog">
+  <div class="modal-content d-flex">
+
+   <!-- Modal Header -->
+   <div class="modal-header">
+     <div class="container-fluid row justify-content-around">
+       <button id="hb0" class="modalHeaderButtons btn active">NASLOVNA</button>
+       <button id="hb1" class="modalHeaderButtons btn">KATALOG</button>
+       <button id="hb2" class="modalHeaderButtons btn">KONTAKT</button>
+     </div>
+    <button class="close" data-dismiss="modal">&times;</button> <!-- onclick="closeModal" -->
+   </div>
+
+   <!-- Modal body -->
+   <div id="modal_body" class="modal-body">
+     <!-- NASLOVNA -->
+     <div id="pghb0" class="modalPages active">
+       <div class="absoluteWrapper">
+          <button id="onama" class="btn">O NAMA</button>
+       </div>
+       <img id="coverimg" src="assets/imgs/coverImage01.jpg" />
+     </div>
+
+     <!-- KATALOG -->
+     <div id="pghb1" class="modalPages row justify-content-center align-self-center">
+       Coming Soon
+     </div>
+
+     <!-- KONTAKT -->
+     <div id="pghb2" class="modalPages row justify-content-center align-self-center">
+       <span id="copied" class="bg-warning">vtsweetplace@gmail.com</span><button id="copyBtn" class="btn btn-primary">copy</button>
+     </div>
+
+   </div>
+
+  </div>
+ </div>
+</div>
+<!-- MODALS.END -->
+
+
+<!-- Modal Trigger -->
+<div class="launchModal row justify-content-center align-self-center">
+ <button class="btn btn-white" data-toggle="modal" data-target="#myModal">Launch <i class="fas fa-rocket"></i></button>
+</div>
+
+<!-- Style -->
+<style>
+</style>
+
+<!-- Script -->
+<script>
+// Click btn that opens Modal
+$(document).ready(function() { // start jQuery on load
+/* Page Builders */
+function fixHeight() {
+	// Windowsheight
+	var $window_height = $(window).height();
+
+	// Header's height
+	var $header_height = $(".modal-header").eq(0).outerHeight();
+  console.log($window_height);
+  console.log($header_height);
+
+	// #coverimg height
+	$img_height = $window_height - $header_height;
+  console.log($img_height);
+
+	$("#coverimg").css({ "max-height": $img_height });
+}
+
+$('#myModal').on('shown.bs.modal', function() { fixHeight(); });
+$('#myModal').modal();
+
+$(window).resize(function() { fixHeight(); });
+
+var modalHeaderButtons = document.querySelectorAll(".modalHeaderButtons");
+var modalPages = document.querySelectorAll(".modalPages")
+for(i = 0; i < modalHeaderButtons.length; i++) {
+  modalHeaderButtons[i].addEventListener("click", switchButtonAndPage);
+}
+
+function switchButtonAndPage(event) {
+  event.preventDefault();
+
+  document.querySelector(".modalHeaderButtons.active").classList.remove("active");
+  document.querySelector(".modalPages.active").classList.remove("active");
+
+  var clickedButton = event.currentTarget;
+  clickedButton.classList.add("active");
+
+  var newPage = document.getElementById("pg"+clickedButton.id);
+  newPage.classList.add("active");
+}
+
+$('#copyBtn').click(function() {
+  var text = $("#copied").get(0)
+  var selection = window.getSelection();
+  var range = document.createRange();
+  range.selectNodeContents(text);
+  selection.removeAllRanges();
+  selection.addRange(range);
+  //add to clipboard.
+  document.execCommand('copy');
+});
+
+}); // end jQuery on load
+
+// Vue.js Instance
+var vm = new Vue({ // vm - ViewModel from MVVM Pattern
+  el: '.modal',
+  data: {
+  },
+  methods: {
+  }
+});
+</script>
