@@ -12,7 +12,22 @@ var pfms = {
     height: function() { return $('.modal-body').eq(0).outerHeight(); }
   },
   absoluteWrapper: {
-    elementCenter: function() { console.log(this); },
+    elementCenter: function(obj) {
+      var midX = ($(obj).outerWidth() / 2);
+      var midY = ($(obj).outerHeight() / 2);
+
+      var conX = $(obj).parent('.absoluteWrapper').outerWidth();
+      var conY = $(obj).parent('.absoluteWrapper').outerHeight();
+
+      var elPosX = (conX/2-midX);
+      var elPosY = (conY/2-midY);
+
+      $(obj).css({
+        'position': 'relative',
+        'left': elPosX,
+        'top': elPosY
+      });
+    },
   },
   coverimg: {
     height: function() { return (pfms.window.height() - pfms.header.height()); }
@@ -29,8 +44,9 @@ var vm = new Vue({ // vm - ViewModel from MVVM Pattern
   methods: {
     adjust() {
       $('.coverimg').css("height", pfms.coverimg.height());
+      $('.absoluteWrapper').css("height", pfms.coverimg.height());
       $('.elementCenter').each(function(i, obj) { // $(obj) === $(this) || obj for pure js chaining
-
+        pfms.absoluteWrapper.elementCenter(obj);
       });
     }
   },

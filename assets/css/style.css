@@ -83,6 +83,7 @@
   display: block;
 }
 .absoluteWrapper {
+  width: 100%;
   position: absolute;
 }
 .coverimg {
