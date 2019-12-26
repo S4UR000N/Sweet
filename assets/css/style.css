@@ -85,7 +85,7 @@
 .absoluteWrapper {
   position: absolute;
 }
-#coverimg {
+.coverimg {
   width: 100%;
   /*
   object-fit: contain;

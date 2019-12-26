@@ -1,5 +1,5 @@
 /* pre-formulated measurements */
-var pcms = {
+var pfms = {
   window: {
     width: function() { return $(window).width(); },
     height: function() { return $(window).height(); }
@@ -12,12 +12,10 @@ var pcms = {
     height: function() { return $('.modal-body').eq(0).outerHeight(); }
   },
   absoluteWrapper: {
-    elementCenter: function() {
-
-    }
+    elementCenter: function() { console.log(this); },
   },
   coverimg: {
-    height: function() { return (pcms.modalBody.height() - pcms.header.height()); }
+    height: function() { return (pfms.window.height() - pfms.header.height()); }
   }
 };
 
@@ -25,17 +23,23 @@ var pcms = {
 var vm = new Vue({ // vm - ViewModel from MVVM Pattern
   el: '.modal',
   data: {
-    // computed measurements
-    coverimgStyleObject: {},
-    onamaStyleObject: {
-
-    }
   },
   computed: {
-
   },
   methods: {
-  }
+    adjust() {
+      $('.coverimg').css("height", pfms.coverimg.height());
+      $('.elementCenter').each(function(i, obj) { // $(obj) === $(this) || obj for pure js chaining
+
+      });
+    }
+  },
+  mounted: function() {
+    window.addEventListener('resize', this.adjust);
+    $('#myModal').on('shown.bs.modal', function() { vm.adjust(); });
+  },
+
+
 });
 
 // Click btn that opens Modal
@@ -72,12 +76,6 @@ $('#copyBtn').click(function() {
 
 }); // end jQuery on load
 
-$('#myModal').on('shown.bs.modal', function() {
-  console.log(pcms.modalBody.height());
-  console.log(pcms.header.height());
-  console.log(pcms.coverimg.height());
-});
-$(window).resize(function() { /* hmm */ });
 $('#myModal').modal();
 
 /* Strapped.js */
