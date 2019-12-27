@@ -31,10 +31,21 @@ var pfms = {
   },
   coverimg: {
     height: function() { return (pfms.window.height() - pfms.header.height()); }
+  },
+  slideshow: {
+    activate: function() {
+      $('#onama, #coverimg').remove();
+      $('#slideshow').css('display', 'block');
+    },
+    slides: function() { return document.getElementsByClassName('slide').length; }
   }
 };
 
-// Vue.js Instance
+/* Vue Componenets */
+// Button Slide Back
+//Vue.component('button-slide', {});
+
+/* Vue.js Instance */
 var vm = new Vue({ // vm - ViewModel from MVVM Pattern
   el: '.modal',
   data: {
@@ -53,9 +64,7 @@ var vm = new Vue({ // vm - ViewModel from MVVM Pattern
   mounted: function() {
     window.addEventListener('resize', this.adjust);
     $('#myModal').on('shown.bs.modal', function() { vm.adjust(); });
-  },
-
-
+  }
 });
 
 // Click btn that opens Modal
@@ -93,15 +102,3 @@ $('#copyBtn').click(function() {
 }); // end jQuery on load
 
 $('#myModal').modal();
-
-/* Strapped.js */
-function Strapped() {
-  this.positioning = {
-    spanel: {},
-    divel: {},
-    imgel: {}
-  }
-};
-
-// Strapped.js Instance
-var st = new Strapped();
