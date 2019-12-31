@@ -27,12 +27,36 @@
   <button class="lol btn btn-danger" v-if="state === 1" v-on:click="changeState(-1)">Cancel</button>
 </div>
 
+<img id="myImage" src="assets/imgs/goals.jpg" />
 <!-- Style -->
 <style>
 </style>
 
 <!-- Script -->
 <script>
+  var animate, left=0, imgObj=null, right;
+
+function init(){
+
+   imgObj = document.getElementById('myImage');
+   imgObj.style.position= 'absolute';
+   imgObj.style.top = 0;
+   imgObj.style.left = 0;
+   imgObj.style.visibility='visible';
+
+   right = document.documentElement.clientWidth - imgObj.width;
+   moveRight();
+
+}
+
+function moveRight(){
+    if (left < right) {
+        left += 5;
+        imgObj.style.left = Math.min(left, right) + 'px';
+
+        animate = setTimeout(moveRight,20); // call moveRight in 20msec
+    }
+}
 var vm = new Vue({ // vm - ViewModel from MVVM Pattern
   el: '.container',
   data: {

@@ -64,16 +64,6 @@
   font-size: 80px;
   color: #C71585;
 }
-#copied {
-  font-size: 20px;
-  color: white;
-
-  padding: 8px;
-  border-radius: 5px 0 0 5px;
-
-  position: relative;
-  top: 3px;
-}
 
 /* Pages */
 .modalPages {
@@ -94,7 +84,9 @@
   overflow: scroll;
   */
 }
+/* NASLOVNA */
 #onama {
+  display: none; /* Fix Loading Problem where Button Appears in Top L corner */
   color: #002a4c;
   background-color: white;
   font-family: serif;
@@ -107,4 +99,83 @@
   padding: 8px;
 }
 #onama:hover { color: #00baff; }
-#slideshow { display: none; }
+
+/* O NAMA */
+.slideshow { display: none; }
+.slideshow > img { display: none; }
+.slideBtns {
+  z-index: 1060;
+
+  border: 0;
+  border-radius: 4px;
+
+  padding: 5px 6px 3px 6px;
+
+  background-color: #9b4dca;
+}
+.slideBtns:hover { background-color: #606c76; }
+.slideBtns > i {
+  color: white;
+  font-size: 40px;
+}
+.slideBtns:hover > i {
+  color: #00baff;
+  /*
+  1. 00baff
+  2. 9b4dca
+  */
+}
+/* Slide 02 SPECIAL CASE */
+#slide02img {
+  position: absolute;
+}
+#slide02gradient {
+  position: relative;
+}
+
+/* KATALOG */
+
+/* KONTAKT */
+#copied {
+  font-size: 20px;
+  color: white;
+
+  padding: 8px;
+  border-radius: 5px 0 0 5px;
+
+  position: relative;
+  top: 3px;
+}
+/* CSS Gradients */
+#gradient01 {
+  background: #FF5F6D;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, #FFC371, #FF5F6D);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #FFC371, #FF5F6D); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+/* CSS Animations */
+.slide {
+  transition: transform 0.6s;
+}
+.fade-in-cover {
+	opacity: 1;
+	animation-name: fadeInOpacity;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in;
+	animation-duration: 1.5s;
+}
+.fade-in-buttons {
+  opacity: 1;
+	animation-name: fadeInOpacity;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in;
+	animation-duration: 1s;
+}
+@keyframes fadeInOpacity {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}

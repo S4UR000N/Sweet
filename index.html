@@ -37,23 +37,24 @@
      <!-- NASLOVNA -->
      <div id="pghb0" class="modalPages active">
        <div class="absoluteWrapper">
-          <button id="onama" class="btn elementCenter" onclick="pfms.slideshow.activate()">O NAMA</button>
+          <button id="onama" class="btn elementCenter" onclick="pfms.slideshow.activate()" @click="adjust()">O NAMA</button>
 
           <!-- Slideshow Buttons -->
-          <div>
-            <!-- <button-slide slideRight="false"></button-slide> -->
+          <div class="slideshow">
+            <button class="slideBtns elementLeftCenter" v-bind:disabled="count === 0" @click.prevent="count--"><i class="fas fa-chevron-circle-left"></i></button>
+            <button class="slideBtns elementRightCenter" v-bind:disabled="count === slides" @click.prevent="count++"><i class="fas fa-chevron-circle-right"></i></button>
           </div>
        </div>
        <img id="coverimg" class="coverimg" src="assets/imgs/coverImage01.jpg" />
 
        <!-- Slideshow Images -->
-       <div id="slideshow">
+       <div class="slideshow">
          <img src="assets/imgs/vision.jpg" class="coverimg slide" />
-         <img src="assets/imgs/mission.jpg" class="coverimg slide" />
+         <img id="slide02img" src="assets/imgs/mission05.png" class="sideimg slide" />
+         <img id="slide02gradient" src="assets/imgs/gradient01.jpg" class="coverimg slide" />
          <img src="assets/imgs/goals.jpg" class="coverimg slide" />
        </div>
      </div>
-
      <!-- KATALOG -->
      <div id="pghb1" class="modalPages">
        <div class="absoluteWrapper">
