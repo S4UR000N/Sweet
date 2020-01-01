@@ -86,8 +86,12 @@
 }
 /* pre-formulated measurements Assistant */
 .textCenter {
+  position: relative;
   text-align: center;
   padding: 0 54px 0 54px;
+}
+.textCenter>* {
+  text-align: center;
 }
 /* NASLOVNA */
 #onama {

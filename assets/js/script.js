@@ -33,11 +33,10 @@ var pfms = {
       var conY = (pfms.coverimg.height() / 2);
 
       var elPosY = (conY-midY-52);
+      console.log(midY+":"+conY+":"+elPosY);
+      console.log("========================="); console.log("");
 
-      $(obj).css({
-        'position': 'relative',
-        'top': elPosY
-      });
+      $(obj).css('top', elPosY);
     },
     elementLeftCenter: function(obj) {
       var midY = ($(obj).outerHeight() / 2);
@@ -145,6 +144,11 @@ var vm = new Vue({ // vm - ViewModel from MVVM Pattern
       var newParentIndex = $('.slide').eq(this.count).attr('data-parent');
       $('.slide').eq(this.count).css('display', 'block').addClass('active');
       $('[data-myParent="'+newParentIndex+'"]').css('display', 'block');
+      if(newParentIndex > 0) {
+        $('.textCenter').each(function(i, obj) { // $(obj) === $(this) || obj for pure js chaining
+          pfms.absoluteWrapper.textCenter(obj);
+        });
+      }
     }
   },
   mounted: function() {
