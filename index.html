@@ -41,18 +41,36 @@
 
           <!-- Slideshow Buttons -->
           <div class="slideshow">
-            <button class="slideBtns elementLeftCenter" v-bind:disabled="count === 0" @click.prevent="count--"><i class="fas fa-chevron-circle-left"></i></button>
-            <button class="slideBtns elementRightCenter" v-bind:disabled="count === slides" @click.prevent="count++"><i class="fas fa-chevron-circle-right"></i></button>
+            <button class="slideBtns elementLeftCenter" v-bind:disabled="count === 0" @click.prevent="count--" @click="slide()"><i class="fas fa-chevron-circle-left"></i></button>
+            <button class="slideBtns elementRightCenter" v-bind:disabled="count === (slides-1)" @click.prevent="count++" @click="slide()"><i class="fas fa-chevron-circle-right"></i></button>
           </div>
+
+          <!-- Slideshow Text -->
+          <div class="slideText slide0 textCenter" data-myParent="0">Postati vodeća tvrtka u proizvodnji slastičarskih proizvoda te se proširiti na inozemna tržišta</div>
+
+          <div class="slideText textCenter" data-myParent="1">
+            <div class="slideText slide1" data-myParent="1">Svakodnevno proizvodimo visokokvalitetne slastičarske proizvode, razvijamo nove recepture</div>
+            <div class="slideText slide1" data-myParent="1">Trudom naših zaposlenika postajemo sve uspješniji te nastojimo zadržati povjerenje naših kupaca stvaranjem slatkih trenutaka zadovoljstva</div>
+          </div>
+
+          <div class="slideText textCenter" data-myParent="2">
+            <div class="slideText slide2" data-myParent="2">Pronaći novi poslovni prostor do 2020. godine</div>
+            <div class="slideText slide2" data-myParent="2">Proširiti asortiman do 2021. godine</div>
+            <div class="slideText slide2" data-myParent="2">Ostvariti mjesečni profit od 20.000,00 kn do 2020. godine</div>
+            <div class="slideText slide2" data-myParent="2">Postati tvrtka koja postavlja nove standarde izvrsnosti u proizvodnji slastičarskih proizvoda u 2020. godini</div>
+          </div>
+
        </div>
+
+       <!-- Opening cover image -->
        <img id="coverimg" class="coverimg" src="assets/imgs/coverImage01.jpg" />
 
        <!-- Slideshow Images -->
-       <div class="slideshow">
-         <img src="assets/imgs/vision.jpg" class="coverimg slide" />
-         <img id="slide02img" src="assets/imgs/mission05.png" class="sideimg slide" />
-         <img id="slide02gradient" src="assets/imgs/gradient01.jpg" class="coverimg slide" />
-         <img src="assets/imgs/goals.jpg" class="coverimg slide" />
+       <div class="slideshow"></div>
+         <img src="assets/imgs/vision.jpg" class="coverimg slide" data-parent="0" />
+         <img id="slide02gradient" src="assets/imgs/gradient01.jpg" class="coverimg slideGradient" data-myParent="1" />
+         <img id="slide02img" src="assets/imgs/mission05.png" class="sideimg slide" data-parent="1" />
+         <img src="assets/imgs/goals.jpg" class="coverimg slide" data-parent="2" />
        </div>
      </div>
      <!-- KATALOG -->
@@ -65,7 +83,7 @@
      <!-- KONTAKT -->
      <div id="pghb2" class="modalPages">
        <div class="absoluteWrapper">
-         <span id="copied" class="bg-warning">vtsweetplace@gmail.com</span><button id="copyBtn" class="btn btn-primary">copy</button>
+         <div id="copied" class="bg-warning">vtsweetplace@gmail.com</div><button id="copyBtn" class="btn btn-primary">copy</button>
        </div>
      </div>
 

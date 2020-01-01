@@ -28,6 +28,17 @@ var pfms = {
         'top': elPosY
       });
     },
+    textCenter: function(obj) {
+      var midY = ($(obj).outerHeight() / 2);
+      var conY = (pfms.coverimg.height() / 2);
+
+      var elPosY = (conY-midY-52);
+
+      $(obj).css({
+        'position': 'relative',
+        'top': elPosY
+      });
+    },
     elementLeftCenter: function(obj) {
       var midY = ($(obj).outerHeight() / 2);
       var conY = $(obj).parents('.absoluteWrapper').outerHeight();
@@ -62,9 +73,8 @@ var pfms = {
     activate: function() {
       $('#onama, #coverimg').remove();
       $('.slideshow').css('display', 'block');
-      $('.slideshow>img').eq(1).css('display', 'block');
-      $('.slideshow>img').eq(2).css('display', 'block');
-
+      $('.slideText.slide0').css('display', 'block');
+      $('[data-parent="0"]').eq(0).css('display', 'block').addClass('active');
     },
     slides: function() { return document.getElementsByClassName('slide').length; }
   },
@@ -72,17 +82,22 @@ var pfms = {
     slide02: function() {
       var img = $('#slide02img');
       var grad = $('#slide02gradient');
+      var text = $('.slideText.slide1');
 
-      $(img).css("height", pfms.coverimg.height());
+      $(img).css('height', pfms.coverimg.height());
       var imgX = img.outerWidth();
-      var imgY = img.outerWidth();
-      
-      var gradX = (pfms.window.width() - imgX); console.log(gradX);
+      var imgY = img.outerHeight();
 
+      $(text).css('padding-right', imgX);
+
+      var gradX = (pfms.window.width() - imgX);
+
+      $(img).css({
+        'left': gradX
+      });
       $(grad).css({
         'width': gradX,
         'height': imgY,
-        'left': imgX
       });
     }
   }
@@ -97,7 +112,7 @@ var vm = new Vue({ // vm - ViewModel from MVVM Pattern
   el: '.modal',
   data: {
     count: 0,
-    slides: 0
+    slides: ''
   },
   computed: {
   },
@@ -105,6 +120,9 @@ var vm = new Vue({ // vm - ViewModel from MVVM Pattern
     adjust: function() {
       $('.coverimg').css("height", pfms.coverimg.height());
       $('.absoluteWrapper').css("height", pfms.coverimg.height());
+      $('.textCenter').each(function(i, obj) { // $(obj) === $(this) || obj for pure js chaining
+        pfms.absoluteWrapper.textCenter(obj);
+      });
       $('.elementCenter').each(function(i, obj) { // $(obj) === $(this) || obj for pure js chaining
         pfms.absoluteWrapper.elementCenter(obj);
       });
@@ -115,6 +133,18 @@ var vm = new Vue({ // vm - ViewModel from MVVM Pattern
         pfms.absoluteWrapper.elementRightCenter(obj);
       });
       pfms.specialCases.slide02();
+    },
+    slide: function() {
+      // Hide Current Slide
+      var parentIndex = $('.slide.active').attr('data-parent');
+      $('[data-myParent="'+parentIndex+'"]').css('display', 'none');
+      $('.slide.active').css('display', 'none');
+      $('.slide.active').removeClass('active');
+
+      // Show Requested Slide
+      var newParentIndex = $('.slide').eq(this.count).attr('data-parent');
+      $('.slide').eq(this.count).css('display', 'block').addClass('active');
+      $('[data-myParent="'+newParentIndex+'"]').css('display', 'block');
     }
   },
   mounted: function() {
@@ -122,8 +152,7 @@ var vm = new Vue({ // vm - ViewModel from MVVM Pattern
     $('#myModal').on('shown.bs.modal', function() {
       vm.adjust();
       $('#onama').css('display', 'block'); /* Fix Loading Problem where Button Appears in Top L corner */
-      this.slides = pfms.slideshow.slides();
-      console.log(this.slides);
+      vm.slides = pfms.slideshow.slides();
     });
   }
 });

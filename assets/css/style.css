@@ -84,6 +84,11 @@
   overflow: scroll;
   */
 }
+/* pre-formulated measurements Assistant */
+.textCenter {
+  text-align: center;
+  padding: 0 54px 0 54px;
+}
 /* NASLOVNA */
 #onama {
   display: none; /* Fix Loading Problem where Button Appears in Top L corner */
@@ -102,7 +107,22 @@
 
 /* O NAMA */
 .slideshow { display: none; }
-.slideshow > img { display: none; }
+.slide { display: none; }
+.slideText {
+  z-index: 1055;
+  display: none;
+}
+.slideText.slide0 {
+  color: white; font-size: 20px;
+}
+.slideText.slide1 {
+  color: white; font-size: 20px;
+}
+.slideText.slide2 {
+  color: white; font-size: 20px;
+}
+.slideGradient { display: none; }
+.slideBtns[disabled] { visibility: hidden; }
 .slideBtns {
   z-index: 1060;
 
@@ -126,10 +146,10 @@
   */
 }
 /* Slide 02 SPECIAL CASE */
-#slide02img {
+#slide02gradient {
   position: absolute;
 }
-#slide02gradient {
+#slide02img {
   position: relative;
 }
 
@@ -148,9 +168,9 @@
 }
 /* CSS Gradients */
 #gradient01 {
-  background: #FF5F6D;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to bottom, #FFC371, #FF5F6D);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to bottom, #FFC371, #FF5F6D); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: #f953c6; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #f953c6, #b91d73); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #f953c6, #b91d73); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 /* CSS Animations */
