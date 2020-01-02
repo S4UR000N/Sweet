@@ -123,7 +123,26 @@
   color: white; font-size: 20px;
 }
 .slideText.slide2 {
-  color: white; font-size: 20px;
+  color: black; font-size: 20px;
+}
+.slideTextBackground0 {
+  padding: 5px;
+  border-radius: 6px;
+  background-color: /*rgba(155,77,202,0.9);*/
+                    rgba(13,13,13,1);
+
+}
+.slideTextBackground2 {
+  display: inline-block;
+
+  padding: 4px 8px 4px 8px;
+
+  border: 3px solid white;
+
+  border-radius: 6px;
+
+  background-color: rgba(0,186,255,1);
+
 }
 .slideGradient { display: none; }
 .slideBtns[disabled] { visibility: hidden; }
@@ -149,6 +168,8 @@
   2. 9b4dca
   */
 }
+/* Slide 01 SPECIAL CASE Pseudo Element */
+
 /* Slide 02 SPECIAL CASE */
 #slide02gradient {
   position: absolute;

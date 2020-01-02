@@ -33,8 +33,6 @@ var pfms = {
       var conY = (pfms.coverimg.height() / 2);
 
       var elPosY = (conY-midY-52);
-      console.log(midY+":"+conY+":"+elPosY);
-      console.log("========================="); console.log("");
 
       $(obj).css('top', elPosY);
     },
@@ -72,8 +70,8 @@ var pfms = {
     activate: function() {
       $('#onama, #coverimg').remove();
       $('.slideshow').css('display', 'block');
-      $('.slideText.slide0').css('display', 'block');
-      $('[data-parent="0"]').eq(0).css('display', 'block').addClass('active');
+      $('[data-parent="0"]').css('display', 'block').addClass('active');
+      $('[data-myParent="0"]').css('display', 'block');
     },
     slides: function() { return document.getElementsByClassName('slide').length; }
   },
@@ -87,16 +85,17 @@ var pfms = {
       var imgX = img.outerWidth();
       var imgY = img.outerHeight();
 
-      $(text).css('padding-right', imgX);
-
       var gradX = (pfms.window.width() - imgX);
 
       $(img).css({
         'left': gradX
       });
+      $(text).css({
+        'padding-right': imgX
+      });
       $(grad).css({
         'width': gradX,
-        'height': imgY,
+        'height': imgY
       });
     }
   }
