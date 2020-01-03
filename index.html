@@ -41,24 +41,24 @@
 
           <!-- Slideshow Buttons -->
           <div class="slideshow">
-            <button class="slideBtns elementLeftCenter" v-bind:disabled="count === 0" @click.prevent="count--" @click="slide()"><i class="fas fa-chevron-circle-left"></i></button>
-            <button class="slideBtns elementRightCenter" v-bind:disabled="count === (slides-1)" @click.prevent="count++" @click="slide()"><i class="fas fa-chevron-circle-right"></i></button>
+            <button class="slideBtns elementLeftCenter " v-bind:disabled="count === 0" @click.prevent="count--" @click="slide()"><i class="fas fa-chevron-circle-left"></i></button>
+            <button class="slideBtns elementRightCenter " v-bind:disabled="count === (slides-1)" @click.prevent="count++" @click="slide()"><i class="fas fa-chevron-circle-right"></i></button>
           </div>
 
           <!-- Slideshow Text -->
-          <div class="slideText slideParent0 textCenter" data-myParent="0">
-            <div class="slideText slide0" data-myParent="0"><span class="slideTextBackground0">Postati vodeća tvrtka u proizvodnji slastičarskih proizvoda</span></div>
-            <div class="slideText slide0" data-myParent="0"><span class="slideTextBackground0">Proširiti se na inozemna tržišta</span></div>
+          <div class="slideText slideParent0" data-myParent="0">
+            <span id="smallball" class="slideText slide0 slideTextBackground0" data-myParent="0" style="width: 150px; height: 150px;"><div style="margin-top: 25px;">Proširiti se<br> na inozemna tržišta</div></span>
+            <span id="bigball" class="slideText slide0 slideTextBackground0" data-myParent="0" style="width: 200px; height: 200px; margin: -25px 25px 0 0; float: right;"><div style="margin-top: 35px;">Postati vodeća<br> tvrtka u proizvodnji<br> slastičarskih proizvoda</div></span>
           </div>
           <!--<div class="slideTextBackground slide0 elementCenter" data-myParent="0"></div>-->
 
-          <div class="slideText slideParent1 textCenter" data-myParent="1">
+          <div class="slideText slideParent1 textCenter " data-myParent="1">
             <div class="slideText slide1" data-myParent="1">Trudom naših zaposlenika postajemo sve uspješniji te nastojimo zadržati povjerenje naših kupaca stvaranjem slatkih trenutaka zadovoljstva</div><br>
             <div class="slideText slide1" data-myParent="1">Svakodnevno proizvodimo visokokvalitetne slastičarske proizvode</div><br>
             <div class="slideText slide1" data-myParent="1">Razvijamo nove recepture</div>
           </div>
 
-          <div class="slideText slideParent2 textCenter" data-myParent="2">
+          <div class="slideText slideParent2 textCenter " data-myParent="2">
             <span class="slideText slide2 slideTextBackground2">
               Proširiti asortiman do 2021. godine<br>
               Pronaći novi poslovni prostor do 2020. godine<br>
@@ -75,8 +75,8 @@
        <!-- Slideshow Images -->
        <div class="slideshow">
          <img src="assets/imgs/vision.jpg" class="coverimg slide" data-parent="0" />
-         <img id="slide02gradient" src="assets/imgs/gradient01.jpg" class="coverimg slideGradient" data-myParent="1" />
-         <img id="slide02img" src="assets/imgs/mission05.png" class="sideimg slide" data-parent="1" />
+         <img id="slide02gradient" src="assets/imgs/gradient01.jpg" class="slideGradient" data-myParent="1" />
+         <img id="slide02img" src="assets/imgs/mission05.png" class="slide" data-parent="1" />
          <img src="assets/imgs/goals.jpg" class="coverimg slide" data-parent="2" />
        </div>
      </div>

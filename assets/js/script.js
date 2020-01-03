@@ -1,3 +1,43 @@
+/**
+ * Detects if two elements are colliding
+ *
+ * Credit goes to BC on Stack Overflow, cleaned up a little bit
+ *
+ * @link http://stackoverflow.com/questions/5419134/how-to-detect-if-two-divs-touch-with-jquery
+ * @param $div1
+ * @param $div2
+ * @returns {boolean}
+ */
+var is_colliding = function( $div1, $div2 ) {
+	// Div 1 data
+	var d1_offset             = $div1.offset();
+	var d1_height             = $div1.outerHeight( true );
+	var d1_width              = $div1.outerWidth( true );
+	var d1_distance_from_top  = d1_offset.top + d1_height;
+	var d1_distance_from_left = d1_offset.left + d1_width;
+
+	// Div 2 data
+	var d2_offset             = $div2.offset();
+	var d2_height             = $div2.outerHeight( true );
+	var d2_width              = $div2.outerWidth( true );
+	var d2_distance_from_top  = d2_offset.top + d2_height;
+	var d2_distance_from_left = d2_offset.left + d2_width;
+
+	var not_colliding = (
+    d1_distance_from_top < d2_offset.top ||
+    d1_offset.top > d2_distance_from_top ||
+    d1_distance_from_left < d2_offset.left ||
+    d1_offset.left > d2_distance_from_left
+  );
+  console.log(d1_distance_from_top < d2_offset.top);
+  console.log(d1_offset.top > d2_distance_from_top);
+  console.log(d1_distance_from_top < d2_offset.top);
+  console.log(d1_offset.left > d2_distance_from_left);
+
+	// Return whether it IS colliding
+	return ! not_colliding;
+};
+
 /* pre-formulated measurements */
 var pfms = {
   window: {
@@ -11,7 +51,7 @@ var pfms = {
     width: function() { return $('.modal-body').eq(0).outerWidth(); },
     height: function() { return $('.modal-body').eq(0).outerHeight(); }
   },
-  absoluteWrapper: {
+  absoluteWrapper: { /* checkMinScreenReqs is class used on almost every positioning modifier in case that screen is too small */
     elementCenter: function(obj) {
       var midX = ($(obj).outerWidth() / 2);
       var midY = ($(obj).outerHeight() / 2);
@@ -38,8 +78,9 @@ var pfms = {
     },
     elementLeftCenter: function(obj) {
       var midY = ($(obj).outerHeight() / 2);
-      var conY = $(obj).parents('.absoluteWrapper').outerHeight();
-      var elPosY = (conY/2-midY);
+      var conY = (pfms.coverimg.height() / 2);
+
+      var elPosY = (conY-midY);
 
       $(obj).css({
         'position': 'relative',
@@ -51,10 +92,10 @@ var pfms = {
       var midY = ($(obj).outerHeight() / 2);
 
       var conX = pfms.window.width();
-      var conY = $(obj).parents('.absoluteWrapper').outerHeight();
+      var conY = (pfms.coverimg.height() / 2);
 
       var elPosX = (conX-(2*objX));
-      var elPosY = (conY/2-midY);
+      var elPosY = (conY-midY);
 
       $(obj).css({
         'position': 'relative',
@@ -62,6 +103,18 @@ var pfms = {
         'top': elPosY
       });
     },
+    bigBallTopRightCorner: function() {
+      var obj = $('#bigball');
+      var myX = obj.outerWidth();
+      var myY = obj.outerHeight();
+
+      var myPosX = '';
+      var myPosY = '';
+
+      $(obj).css({
+      });
+    },
+    smallBallBottomLeftCorner: function() {}
   },
   coverimg: {
     height: function() { return (pfms.window.height() - pfms.header.height()); }
@@ -71,32 +124,63 @@ var pfms = {
       $('#onama, #coverimg').remove();
       $('.slideshow').css('display', 'block');
       $('[data-parent="0"]').css('display', 'block').addClass('active');
-      $('[data-myParent="0"]').css('display', 'block');
+      $('.slideParent0').css('display', 'block');
     },
     slides: function() { return document.getElementsByClassName('slide').length; }
   },
   specialCases: {
     slide02: function() {
+      // Select needed elements
       var img = $('#slide02img');
       var grad = $('#slide02gradient');
       var text = $('.slideText.slide1');
 
+      // Pre calculation settings
+      var textLength = 0;
+      var winX = pfms.window.width();
       $(img).css('height', pfms.coverimg.height());
+
+      // Get calculated data
       var imgX = img.outerWidth();
       var imgY = img.outerHeight();
 
-      var gradX = (pfms.window.width() - imgX);
+      var gradX = grad.outerWidth();
+      var gradY = grad.outerHeight();
+      var gradP = (gradX*gradY);
 
-      $(img).css({
-        'left': gradX
+      $(text).each(function(i, obj) { // $(obj) === $(this) || obj for pure js chaining
+        textLength += ($(obj).innerWidth()*$(obj).innerHeight());
       });
-      $(text).css({
-        'padding-right': imgX
-      });
-      $(grad).css({
-        'width': gradX,
-        'height': imgY
-      });
+      console.log(textLength);
+      console.log(gradP);
+      console.log("");
+
+      if(gradP < textLength) {
+        $(img).css({
+          'visibility': 'hidden'
+        });
+        $(text).css({
+          'padding-right': 0
+        });
+        $(grad).css({
+          'width': winX,
+          'height': imgY
+        });
+      }
+      else {
+        gradX = (winX - imgX);
+        $(img).css({
+          'visibility': 'visible',
+          'left': gradX
+        });
+        $(text).css({
+          'padding-right': imgX
+        });
+        $(grad).css({
+          'width': gradX,
+          'height': imgY
+        });
+      }
     }
   }
 };
@@ -143,11 +227,9 @@ var vm = new Vue({ // vm - ViewModel from MVVM Pattern
       var newParentIndex = $('.slide').eq(this.count).attr('data-parent');
       $('.slide').eq(this.count).css('display', 'block').addClass('active');
       $('[data-myParent="'+newParentIndex+'"]').css('display', 'block');
-      if(newParentIndex > 0) {
-        $('.textCenter').each(function(i, obj) { // $(obj) === $(this) || obj for pure js chaining
-          pfms.absoluteWrapper.textCenter(obj);
-        });
-      }
+      $('.textCenter').each(function(i, obj) { // $(obj) === $(this) || obj for pure js chaining
+        pfms.absoluteWrapper.textCenter(obj);
+      });
     }
   },
   mounted: function() {
