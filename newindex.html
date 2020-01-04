@@ -35,8 +35,37 @@
    <!-- Modal body -->
    <div id="modal_body" class="modal-body">
      <!-- NASLOVNA -->
-     <div id="pghb0" class="modalPages active">
-       i
+     <div id="pghb0" class="modalPages active justify-content-center align-items-center" :style="[(0>count) ? {backgroundImage: 'url('+ basePath+ 'coverimgMD.jpg)'} : {backgroundImage: 'url('+ basePath+slideshowImages[count] +')'}]">
+       <button id="onama" class="btn" @click="activate()" @click.prevent="count++">O NAMA</button>
+
+       <!-- Slide1 Content -->
+
+       <!-- Slideshow Buttons -- Content Between -->
+       <div id="shBtns" class="col">
+         <button class="slideBtns float-left" v-bind:disabled="count === 0" @click.prevent="count--" @click="slide()"><i class="fas fa-chevron-circle-left"></i></button>
+         <button class="slideBtns float-right" v-bind:disabled="count === (slides-1)" @click.prevent="count++" @click="slide()"><i class="fas fa-chevron-circle-right"></i></button>
+       </div>
+
+       <!-- Content Container -->
+       <div class="contentContainer">
+         <!-- Slide1 -->
+         <div class="slideIteratable slide1">
+           <div class="c1"><div>Postati vodeća<br> tvrtka u proizvodnji<br> slastičarskih proizvoda</div></div>
+           <div class="c2"><div>Proširiti se<br> na inozemna<br> tržišta</div></div>
+         </div>
+
+         <!-- Slide2 -->
+         <div class="slideIteratable slide2">
+         </div>
+
+         <!-- Slide3 -->
+         <div class="slideIteratable slide3">
+             Proširiti asortiman do 2021. godine<br>
+             Pronaći novi poslovni prostor do 2020. godine<br>
+             Ostvariti mjesečni profit od 20.000,00 kn do 2020. godine<br>
+             Postati tvrtka koja postavlja nove standarde izvrsnosti u proizvodnji slastičarskih proizvoda u 2020. godini<br>
+         </div>
+       </div>
      </div>
 
      <!-- KATALOG -->

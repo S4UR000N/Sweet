@@ -1,3 +1,44 @@
+/* Vue.js Instance */
+var vm = new Vue({ // vm - ViewModel from MVVM Pattern
+  el: '.modal-body',
+  data: {
+    test: 'assets/imgs/coverimgMD.jpg',
+    slides: 0,
+    count: -1,
+    basePath: 'assets/imgs/',
+    slideshowImages: [
+      'vision.jpg',
+      'mission.jpg',
+      'goalsMD.jpg'
+    ],
+  },
+  computed: {},
+  methods: {
+    activate: function() {
+      $('#onama').remove();
+      $('#shBtns').css('display', 'block');
+      $('.contentContainer').css('display', 'block');
+      $('.slide1').addClass('active');
+    },
+    slide: function() {
+      // Hide Current Slide
+      $('.slideIteratable.active').css('display', 'none').removeClass('active');
+
+      // Show Requested Slide
+      $('.slideIteratable').eq(this.count).css('display', 'block').addClass('active');
+    }
+  },
+  mounted: function() {
+    window.addEventListener('resize', this.adjust);
+    $('#myModal').on('shown.bs.modal', function() {
+      vm.slides = (function() {
+        var length = Object.keys(vm.slideshowImages).length;
+        return length;
+      })();
+    });
+  }
+});
+
 // Click btn that opens Modal
 $(document).ready(function() { // start jQuery on load
 var modalHeaderButtons = document.querySelectorAll(".modalHeaderButtons");
