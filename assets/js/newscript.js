@@ -8,7 +8,7 @@ var vm = new Vue({ // vm - ViewModel from MVVM Pattern
     basePath: 'assets/imgs/',
     slideshowImages: [
       'vision.jpg',
-      'mission.jpg',
+      'gradient01.jpg',
       'goalsMD.jpg'
     ],
   },
@@ -23,9 +23,11 @@ var vm = new Vue({ // vm - ViewModel from MVVM Pattern
     slide: function() {
       // Hide Current Slide
       $('.slideIteratable.active').css('display', 'none').removeClass('active');
+      $('.nonContainer').css('display', 'none');
 
       // Show Requested Slide
       $('.slideIteratable').eq(this.count).css('display', 'block').addClass('active');
+      if(this.count == 1) { $('.nonContainer.slide2').css('display', 'block'); }
     }
   },
   mounted: function() {

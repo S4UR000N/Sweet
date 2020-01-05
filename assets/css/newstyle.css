@@ -119,13 +119,14 @@
 .contentContainer { display: none; }
 .slideIteratable { display: none; }
 .slideIteratable.active { display: block; }
+.nonContainer { display: none; }
 
 /* 2.1. Slide 1 */
 .slide1 {}
 .c1 {
   position: absolute;
-  top: 20%;
-  right: 30%;
+  top: 15%;
+  right: 25%;
 
   width: 240px;
   height: 240px;
@@ -136,9 +137,11 @@
   color: white;
   font-size: 25px;
   border: 3px solid white;
-  background-color: /*rgba(155,77,202,0.9);*/
-                    rgba(13,13,13,0.95);
   border-radius: 50%;
+
+  background: #34e89e;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, #0f3443, #34e89e);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #0f3443, #34e89e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 .c1>div {
   margin: 45px 0 0 0;
@@ -157,16 +160,53 @@
   color: white;
   font-size: 25px;
   border: 3px solid white;
-  background-color: /*rgba(155,77,202,0.9);*/
-                    rgba(13,13,13,0.95);
   border-radius: 50%;
+
+  background: #34e89e;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to top right, #0f3443, #34e89e);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to top right, #0f3443, #34e89e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 .c2>div {
   margin: 30px 0 0 0;
 }
+.c3 {
+  position: absolute;
+  bottom: 5%;
+  right: 3%;
+
+  width: 160px;
+  height: 160px;
+
+  display: inline-block;
+  text-align: center;
+
+  color: white;
+  font-size: 25px;
+  border: 3px solid white;
+  border-radius: 50%;
+
+  background: #34e89e;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to top left, #0f3443, #34e89e);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to top left, #0f3443, #34e89e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.c3>div {
+  margin: 25px 0 0 0;
+}
 
 /* 2.2. Slide 2 */
+.slide2>div {
+  text-align: center;
 
+  color: white;
+  font-size: 20px;
+}
+.b1 {
+  padding-left: 52px;
+}
+.nonContainer.slide2 {
+  background-color: white;
+  height: 100%;
+}
 
 /* 2.3. Slide 3 */
 .slide3 {
