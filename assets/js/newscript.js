@@ -1,3 +1,7 @@
+/* Vue.js Components */
+Vue.component('forimg', {
+  template: ``,
+});
 /* Vue.js Instance */
 var vm = new Vue({ // vm - ViewModel from MVVM Pattern
   el: '.modal-body',
@@ -11,9 +15,18 @@ var vm = new Vue({ // vm - ViewModel from MVVM Pattern
       'gradient01.jpg',
       'goalsMD.jpg'
     ],
+    k: 3,
+    f: 6,
+    p: 10,
+    kTitles: [],
+    fTitles: [],
+    pTitles: [],
   },
   computed: {},
   methods: {
+    range : function (start, end) { /* extension that allows better for looping in Vue, Source: https://stackoverflow.com/questions/49715339/how-to-render-v-for-from-particular-index/49715374#49715374 */
+      return Array(end - start + 1).fill().map((_, idx) => start + idx)
+    },
     activate: function() {
       $('#onama').remove();
       $('#shBtns').css('display', 'block');
@@ -37,6 +50,7 @@ var vm = new Vue({ // vm - ViewModel from MVVM Pattern
         var length = Object.keys(vm.slideshowImages).length;
         return length;
       })();
+      //vm.createRow(0, vm.k, 'k', '#k');
     });
   }
 });

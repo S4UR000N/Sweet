@@ -220,3 +220,12 @@
   padding: 8px 16px 8px 16px;
   background-color: rgba(0,186,255,1);
 }
+
+/* KATALOG */
+#pghb1 {
+  /*padding: 0 50px 0 50px;*/
+}
+#k img {
+  width: 250px;
+  height: 250px;
+}
