@@ -1,6 +1,44 @@
-/* Vue.js Components */
-Vue.component('forimg', {
-  template: ``,
+/* Vue.js Components */ /* I ll leave this useless component here in memory of great suffering */
+Vue.component('v-for-images', {
+  props: {
+    imgCount: '',
+    rowLength: '',
+    basePath: '',
+    baseName: ''
+  },
+  render: function(h) {
+    return h(
+      'div',   // tag name
+      {},      // attributes
+      Array.apply(null, { length: (this.imgCount/this.rowLength) }).map((element, index, array) => {   // conventional example: [h('h1', 'header')]
+          // Helper Function, turn HTML to string
+          document.getHTML= function(who, deep) {
+            if(!who || !who.tagName) return '';
+            var txt, ax, el= document.createElement("div");
+            el.appendChild(who.cloneNode(false));
+            txt= el.innerHTML;
+            if(deep){
+                ax= txt.indexOf('>')+1;
+                txt= txt.substring(0, ax)+who.innerHTML+ txt.substring(ax);
+            }
+          el= null;
+          return txt;
+          }
+
+          var content = '';
+          for(var i = 0; i < array.length; i++) {
+            var container = document.createElement('div');
+            container.className = "row d-flex justify-content-around";
+            for(var j = 1; j <= this.rowLength; j++) {
+              var img = document.createElement("img");
+              img.src = this.basePath+this.baseName+'/'+this.baseName+j+'.jpg';
+              container.appendChild(img);
+            }
+            return document.getHTML(container, true);
+          }
+      })
+    )
+  }
 });
 /* Vue.js Instance */
 var vm = new Vue({ // vm - ViewModel from MVVM Pattern
@@ -55,8 +93,36 @@ var vm = new Vue({ // vm - ViewModel from MVVM Pattern
   }
 });
 
+/* Vanilla JS functions */
+function renderKatalogItems(parent, imgCount, rowLength, basePath, baseName) {
+  var content = parent; // Main container
+  var images = []; // Images array
+
+  for(var i = 0; i < imgCount; i++) { // Images
+    var img = document.createElement("img");
+    img.src = basePath+baseName+'/'+baseName+(i+1)+'.jpg';
+    images.push(img);
+  }
+  for(var i = 0; i < (imgCount/rowLength); i++) { // Row containers
+    console.log("container");
+    var container = document.createElement('div');
+    container.className = "row d-flex justify-content-around foodRow";
+    for(var j = 0; j < rowLength; j++) { // append Images to Row Containers but check if image exist in array beforehand
+      if(images[j+(i*rowLength)]) {
+        container.appendChild(images[j+(i*rowLength)]);
+      }
+    }
+    content.appendChild(container);
+  }
+}
+
 // Click btn that opens Modal
 $(document).ready(function() { // start jQuery on load
+//renderKatalogItems(document.getElementById("f"), 6, 3, 'assets/imgs/', 'f');
+//renderKatalogItems(document.getElementById("p"), 10, 3, 'assets/imgs/', 'p');
+
+
+
 var modalHeaderButtons = document.querySelectorAll(".modalHeaderButtons");
 var modalPages = document.querySelectorAll(".modalPages")
 for(i = 0; i < modalHeaderButtons.length; i++) {

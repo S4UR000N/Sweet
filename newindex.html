@@ -18,7 +18,7 @@
 
 <!-- MODALS.START -->
 <!-- Actual Website as Modal -->
-<div class="modal fade " id="myModal">
+<div class="modal fade" data-backdrop="false" id="myModal">
  <div class="modal-dialog">
   <div class="modal-content d-flex">
 
@@ -38,7 +38,7 @@
      <div id="pghb0" class="modalPages active justify-content-center align-items-center" :style="[(0>count) ? {backgroundImage: 'url('+ basePath+ 'coverimgMD.jpg)'} : {backgroundImage: 'url('+ basePath+slideshowImages[count] +')'}]">
        <button id="onama" class="btn" @click="activate()" @click.prevent="count++">O NAMA</button>
 
-       <!-- Slideshow Buttons -- Content Between -->
+       <!-- Slideshow Buttons / Content Between -->
        <div id="shBtns" class="col">
          <button class="slideBtns float-left" v-bind:disabled="count === 0" @click.prevent="count--" @click="slide()"><i class="fas fa-chevron-circle-left"></i></button>
          <button class="slideBtns float-right" v-bind:disabled="count === (slides-1)" @click.prevent="count++" @click="slide()"><i class="fas fa-chevron-circle-right"></i></button>
@@ -78,16 +78,19 @@
 
      <!-- KATALOG -->
      <div id="pghb1" class="modalPages">
-       <div id="k" class="row d-flex justify-content-center">
-           <!--<img v-for="i in k" :src="basePath+'k/k'+i+'.jpg'" />-->
-           <img src="assets/imgs/k/k1.jpg">
-           <img src="assets/imgs/k/k2.jpg">
-           <img src="assets/imgs/k/k3.jpg">
-       </div>
-       <!--
-       <div id="f" class="col" v-for="i in f"></div>
-       <div id="p" class="col" v-for="i in p"></div>
-       -->
+       <div class="container-fluid">
+         <!-- Krafne -->
+         <div id="k" class="row d-flex justify-content-around foodContainer foodRow">
+           <img v-for="i in k" :src="basePath+'k/k'+i+'.jpg'" />
+         </div>
+
+         <!--Fritule -->
+         <div id="f" class="foodContainer"></div>
+
+         <!-- Palacinke -->
+         <div id="p" class="foodContainer"></div>
+
+      </div>
      </div>
 
      <!-- KONTAKT -->
@@ -103,7 +106,7 @@
 
 
 <!-- Modal Trigger -->
-<div class="launchModal row justify-content-center align-self-center">
+<div class="launchModal row justify-content-center align-self-center" style="z-index: -100;">
  <button class="btn btn-white" data-toggle="modal" data-target="#myModal">Launch <i class="fas fa-rocket"></i></button>
 </div>
 

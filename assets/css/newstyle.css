@@ -225,7 +225,16 @@
 #pghb1 {
   /*padding: 0 50px 0 50px;*/
 }
-#k img {
+.foodContainer {
+  padding-top: 30px;
+  background-color: white;
+}
+.foodRow > img {
+  padding-top: 10px;
+  
   width: 250px;
   height: 250px;
 }
+#k {}
+#f {}
+#p {}
