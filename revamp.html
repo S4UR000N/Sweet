@@ -16,62 +16,11 @@
 <link href="https://fonts.googleapis.com/css?family=Dancing+Script&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
-<!-- MODALS.START -->
-<!-- Actual Website as Modal -->
-<div class="modal fade " id="myModal">
- <div class="modal-dialog">
-  <div class="modal-content d-flex">
+<button type="button" class="btn btn-lg btn-danger" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?">Click to toggle popover</button> <br><br>
+<button type="button" class="btn btn-secondary" data-container="body" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+  Popover on top
+</button>
 
-   <!-- Modal Header -->
-   <div class="modal-header">
-     <div class="container-fluid row justify-content-around">
-       <button id="hb0" class="modalHeaderButtons btn active">NASLOVNA</button>
-       <button id="hb1" class="modalHeaderButtons btn">KATALOG</button>
-       <button id="hb2" class="modalHeaderButtons btn">KONTAKT</button>
-     </div>
-    <button class="close" data-dismiss="modal">&times;</button> <!-- onclick="closeModal" -->
-   </div>
-
-   <!-- Modal body -->
-   <div id="modal_body" class="modal-body">
-     <!-- NASLOVNA -->
-     <div id="pghb0" class="modalPages active">
-       <div class="absoluteWrapper">
-         <button id="onama" class="btn elementCenter" onclick="pfms.slideshow.activate()" @click="adjust()">O NAMA</button>
-
-         <!-- Slideshow Buttons -->
-         <div class="slideshow">
-           <button class="slideBtns elementLeftCenter" v-bind:disabled="count === 0" @click.prevent="count--"><i class="fas fa-chevron-circle-left"></i></button>
-           <button class="slideBtns elementRightCenter" v-bind:disabled="count === slides" @click.prevent="count++"><i class="fas fa-chevron-circle-right"></i></button>
-         </div>
-       </div>
-
-       <!-- Opening cover image -->
-       <img id="coverimg" class="coverimg" src="assets/imgs/coverImage01.jpg" />
-
-
-       <div class="slideshow" style="background-image: url('assets/imgs/mission05.png');"></div>
-
-     </div>
-
-   </div>
-  </div>
- </div>
-</div>
-<!-- MODALS.END -->
-
-
-<!-- Modal Trigger -->
-<div class="launchModal row justify-content-center align-self-center">
- <button class="btn btn-white" data-toggle="modal" data-target="#myModal">Launch <i class="fas fa-rocket"></i></button>
-</div>
-
-<!-- Style -->
-<link rel="stylesheet" href="assets/css/style.css">
-<style>
-</style>
-
-<!-- Script -->
-<script src="assets/js/script.js"></script>
 <script>
+$("[data-toggle=popover]").popover();
 </script>

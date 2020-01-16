@@ -222,18 +222,71 @@
 }
 
 /* KATALOG */
-#pghb1 {
-  /*padding: 0 50px 0 50px;*/
-}
-.foodContainer {
+#pghb1 {}
+.titleAndFoodWrapper { /* Container of image section (title, images) */
   padding-top: 30px;
+  text-align: center;
   background-color: white;
 }
-.foodRow > img {
-  padding-top: 10px;
-  
+.foodTitle {
+  color: white;
+  background-color: #00baff;
+
+  font-size: 25px;
+  border-bottom: 2px solid black;
+  border-bottom-style: dashed;
+
+  border-top-left-radius: 50px 20px;
+  border-top-right-radius: 50px 20px;
+}
+.foodTitle:hover {
+  background-color: #80ddff;
+}
+.foodTitle.active {
+  border-bottom: 0;
+  background-color: #80ddff;
+}
+.foodSection {
+  display: none;
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+}
+.col-12 > .foodRow:nth-child(n+2) {
+  padding-top: 15px;
+}
+.foodRow {
+  background-color: #dce1e1;
+}
+.foodRow > div {
   width: 250px;
   height: 250px;
+  /*
+  border-left: 2px solid #00baff;
+  border-right: 2px solid #00baff;*/
+}
+.foodRow > div > button {
+  background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+
+  position: relative;
+  left: 111px;
+}
+.foodRow > div > button > i {
+  font-size: 20px;
+  padding: 4px;
+
+  border-bottom-left-radius: 5px;
+
+  color: white;
+  background-color: #32a852;
+}
+.foodRow > div > button > i:hover {
+  color: #343a40;
 }
 #k {}
 #f {}

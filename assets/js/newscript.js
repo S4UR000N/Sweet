@@ -95,32 +95,99 @@ var vm = new Vue({ // vm - ViewModel from MVVM Pattern
 
 /* Vanilla JS functions */
 function renderKatalogItems(parent, imgCount, rowLength, basePath, baseName) {
-  var content = parent; // Main container
+  var section = parent; // Main container
   var images = []; // Images array
+  var imagesData =
+    [
+      // Krofne
+      ["CLASSIC DONUT", "6,25"],
+      ["SWEET PLACE", "9,38"],
+      ["KROFNILLA", "6,25"],
+      // Fritule
+      ["MORSKA VILA", "15,63"],
+      ["SAY CHEESE", "15,63"],
+      ["YOGI", "15,63"],
+      ["SUA CHUA", "18,75"],
+      ["LITTLE FRITTLE", "18,75"],
+    	["BLACK MAGIC", "25,00"],
+      // Palacinke
+    	["MAMAREDO", "9,38"],
+    	["LINOLINKE", "12,50"],
+    	["JAMMY LOO", "9,38"],
+    	["KOKONILA", "15,63"],
+    	["PUFFY FLUFFY", "21,88"],
+    	["PANNUKAKKU", "21,88"],
+    	["ZOMBI", "18,75"],
+    	["HEY HAM", "25,00"],
+    	["ČUDESNI KIKI", "28,13"],
+      ["ČOKO-ČINKE", "9,38"]
+    ];
 
   for(var i = 0; i < imgCount; i++) { // Images
-    var img = document.createElement("img");
-    img.src = basePath+baseName+'/'+baseName+(i+1)+'.jpg';
+    // Create Elements
+    var img = document.createElement("div");
+    var imgInfo = document.createElement("i"); // <i class="fas fa-info-circle"></i>
+    var imgInfoButton = document.createElement("button");
+
+    // Set Attributes
+    img.style = 'background-image: url('+basePath+baseName+'/'+baseName+(i+1)+'.jpg); background-size: 250px 250px';
+    imgInfo.className="fas fa-info-circle";
+
+    // Popover
+    imgInfoButton.setAttribute("data-toggle", "popover");
+    imgInfoButton.setAttribute("data-placement", "left");
+    imgInfoButton.setAttribute("data-html", "true");
+    imgInfoButton.setAttribute("title", imagesData[i][0]);
+    imgInfoButton.setAttribute("data-content", "Cijena: "+imagesData[i][1]+"kn");
+
+    // Merge
+    imgInfoButton.appendChild(imgInfo);
+    img.appendChild(imgInfoButton);
+
+    // Store
     images.push(img);
   }
   for(var i = 0; i < (imgCount/rowLength); i++) { // Row containers
-    console.log("container");
-    var container = document.createElement('div');
-    container.className = "row d-flex justify-content-around foodRow";
+    var foodRow = document.createElement('div');
+    foodRow.className = "row justify-content-around foodRow";
     for(var j = 0; j < rowLength; j++) { // append Images to Row Containers but check if image exist in array beforehand
       if(images[j+(i*rowLength)]) {
-        container.appendChild(images[j+(i*rowLength)]);
+        foodRow.appendChild(images[j+(i*rowLength)]);
       }
     }
-    content.appendChild(container);
+    section.appendChild(foodRow);
   }
 }
 
 // Click btn that opens Modal
 $(document).ready(function() { // start jQuery on load
-//renderKatalogItems(document.getElementById("f"), 6, 3, 'assets/imgs/', 'f');
-//renderKatalogItems(document.getElementById("p"), 10, 3, 'assets/imgs/', 'p');
+renderKatalogItems(document.getElementById("k"), 3, 3, 'assets/imgs/', 'k');
+renderKatalogItems(document.getElementById("f"), 6, 3, 'assets/imgs/', 'f');
+renderKatalogItems(document.getElementById("p"), 10, 3, 'assets/imgs/', 'p');
+$("[data-toggle=popover]").popover(); // Initialize popovers
 
+/* Slide Up/Down effect */
+$('.foodTitle').each(function(index) {
+  $('.foodTitle').eq(index).click(function(e) {
+    var me = this;
+    var isActive = $(me).hasClass('active');
+    if(isActive) {
+      $("[data-toggle=popover]").popover('hide'); // close popovers
+    }
+    if(!isActive) {
+      $(me).addClass('active');
+    }
+    $('.foodTitle+.foodSection').eq(index).slideToggle('slow', function() {
+      if($(this).hasClass('d-flex')) {
+        $(this).removeClass('d-flex');
+        $(me).removeClass('active');
+      }
+      else {
+        $(this).addClass('d-flex');
+      }
+    });
+  });
+});
 
 
 var modalHeaderButtons = document.querySelectorAll(".modalHeaderButtons");
@@ -130,6 +197,7 @@ for(i = 0; i < modalHeaderButtons.length; i++) {
 }
 
 function switchButtonAndPage(event) {
+  $("[data-toggle=popover]").popover('hide'); // hide active popovers /* From Page KATALOG */
   event.preventDefault();
 
   document.querySelector(".modalHeaderButtons.active").classList.remove("active");
