@@ -130,7 +130,7 @@ function renderKatalogItems(parent, imgCount, rowLength, basePath, baseName) {
     var imgInfoButton = document.createElement("button");
 
     // Set Attributes
-    img.style = 'background-image: url('+basePath+baseName+'/'+baseName+(i+1)+'.jpg); background-size: 250px 250px';
+    img.style = 'background-image: url('+basePath+baseName+'/'+baseName+(i+1)+'.jpg); background-size: 300px 300px';
     imgInfo.className="fas fa-info-circle";
 
     // Popover

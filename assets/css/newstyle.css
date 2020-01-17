@@ -222,7 +222,9 @@
 }
 
 /* KATALOG */
-#pghb1 {}
+#pghb1 {
+  background-color: white;
+}
 .titleAndFoodWrapper { /* Container of image section (title, images) */
   padding-top: 30px;
   text-align: center;
@@ -258,8 +260,8 @@
   background-color: #dce1e1;
 }
 .foodRow > div {
-  width: 250px;
-  height: 250px;
+  width: 300px;
+  height: 300px;
   /*
   border-left: 2px solid #00baff;
   border-right: 2px solid #00baff;*/
@@ -274,7 +276,7 @@
 	outline: inherit;
 
   position: relative;
-  left: 111px;
+  left: 136px;
 }
 .foodRow > div > button > i {
   font-size: 20px;
@@ -288,6 +290,30 @@
 .foodRow > div > button > i:hover {
   color: #343a40;
 }
-#k {}
-#f {}
-#p {}
+
+/* KONTAKT */
+#pghb2 {
+  background-color: white;
+}
+#pghb2 > div > div {
+  padding: 15px 0 15px 0;
+  background-color: white;
+}
+.iconContainer {
+  color: white;
+  font-size: 18px;
+  text-align: center;
+
+  padding: 10px;
+  margin: 0 3px 0 3px;
+}
+.iconContainer i {
+  font-size: 60px;
+  padding: 5px;
+}
+#instagramColor {
+  /*background: -webkit-radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);*/
+  background: -webkit-linear-gradient(bottom left, #fdf497, #fd5949, #d6249f, #285AEB);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
