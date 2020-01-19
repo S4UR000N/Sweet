@@ -253,15 +253,22 @@
   border-top: 2px solid black;
   border-bottom: 2px solid black;
 }
-.col-12 > .foodRow:nth-child(n+2) {
-  padding-top: 15px;
+/* Food Images Spacing and Positioning css  START: */
+.col-12 > .foodRow {
+  padding: 50px 0 50px 0;
 }
+.col-12 > .foodRow:nth-child(n+2) {
+  padding-top: 0px;
+}
+/* Food Images Spacing and Positioning css STOP; */
 .foodRow {
   background-color: #dce1e1;
 }
 .foodRow > div {
   width: 300px;
   height: 300px;
+
+  border: 3px solid black;
   /*
   border-left: 2px solid #00baff;
   border-right: 2px solid #00baff;*/
@@ -276,7 +283,7 @@
 	outline: inherit;
 
   position: relative;
-  left: 136px;
+  left: 133px;
 }
 .foodRow > div > button > i {
   font-size: 20px;
@@ -293,14 +300,28 @@
 
 /* KONTAKT */
 #pghb2 {
+  background-color: white
+}
+#pghb2 > div {
   background-color: white;
 }
 #pghb2 > div > div {
   padding: 15px 0 15px 0;
-  background-color: white;
+}
+#pghb2 > div > div:first-child {
+  background: #FDC830;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, #F37335, #FDC830);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #F37335, #FDC830); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+#pghb2 > div > div:last-child {
+  background: #FDC830;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to top, #F37335, #FDC830);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to top, #F37335, #FDC830); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 .iconContainer {
   color: white;
+  background-color: rgba(0, 0, 0, .75);
+
   font-size: 18px;
   text-align: center;
 
