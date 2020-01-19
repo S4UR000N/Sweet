@@ -35,7 +35,7 @@
    <div id="modal_body" class="modal-body">
      <!-- NASLOVNA -->
      <div id="pghb0" class="modalPages active justify-content-center align-items-center" :style="[(0>count) ? {backgroundImage: 'url('+ basePath+ 'coverimgMD.jpg)'} : {backgroundImage: 'url('+ basePath+slideshowImages[count] +')'}]">
-       <button id="onama" class="btn" @click="activate()" @click.prevent="count++">O NAMA</button>
+       <button id="onama" class="my-auto" @click="activate()" @click.prevent="count++">O NAMA</button>
 
        <!-- Slideshow Buttons / Content Between -->
        <div id="shBtns" class="col">
@@ -135,7 +135,7 @@
 
          <!-- Gmail -->
          <div class="row justify-content-center">
-           <div class="iconContainer">
+           <div id="gmailIconContainer" class="iconContainer">
              <i class="far fa-envelope text-danger"></i><br>
              <span>vtsweetplace@gmail.com<span>
            </div>

@@ -75,16 +75,19 @@
   background-size: cover;
 }
 #onama {
+  position: absolute;
+  left: 0;
+
   color: #002a4c;
   background-color: white;
   font-family: serif;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 90px;
   border: 3px solid white;
-  border-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
 
-  margin: 0;
-  padding: 8px;
+  padding: 10px 40px 10px 40px;
 }
 #onama:hover { color: #00baff; }
 
@@ -148,8 +151,8 @@
 }
 .c2 {
   position: absolute;
-  bottom: 60px;
-  left: 60px;
+  bottom: 30px;
+  left: 30px;
 
   width: 180px;
   height: 180px;
@@ -309,24 +312,37 @@
   padding: 15px 0 15px 0;
 }
 #pghb2 > div > div:first-child {
-  background: #FDC830;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to bottom, #F37335, #FDC830);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to bottom, #F37335, #FDC830); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: #20002c;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to top, rgba(203,180,212,.8), rgba(32,0,44,.8));  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to top, rgba(203,180,212,.8), rgba(32,0,44,.8)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 }
 #pghb2 > div > div:last-child {
-  background: #FDC830;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to top, #F37335, #FDC830);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to top, #F37335, #FDC830); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: #20002c;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, rgba(203,180,212,.8), rgba(32,0,44,.8));  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, rgba(203,180,212,.8), rgba(32,0,44,.8)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 }
 .iconContainer {
   color: white;
-  background-color: rgba(0, 0, 0, .75);
+  background-color: rgba(0, 0, 0, .6);
 
   font-size: 18px;
   text-align: center;
 
   padding: 10px;
   margin: 0 3px 0 3px;
+}
+.iconContainer:nth-child(1) {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+.iconContainer:nth-child(3) {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+#gmailIconContainer {
+  border-radius: 5px;
 }
 .iconContainer i {
   font-size: 60px;
