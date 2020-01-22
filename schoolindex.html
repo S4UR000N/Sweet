@@ -1,0 +1,736 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+<body>
+
+<!-- Inc -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<link href="https://fonts.googleapis.com/css?family=Dancing+Script&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous" />
+<!-- MODALS.START -->
+<!-- Actual Website as Modal -->
+<div class="modal fade" data-backdrop="false" id="myModal">
+ <div class="modal-dialog">
+  <div class="modal-content d-flex">
+
+   <!-- Modal Header -->
+   <div class="modal-header">
+     <div class="container-fluid row justify-content-around">
+       <button id="hb0" class="modalHeaderButtons btn active">NASLOVNA</button>
+       <button id="hb1" class="modalHeaderButtons btn">KATALOG</button>
+       <button id="hb2" class="modalHeaderButtons btn">KONTAKT</button>
+     </div>
+    <button class="close" data-dismiss="modal">&times;</button> <!-- onclick="closeModal" -->
+   </div>
+
+   <!-- Modal body -->
+   <div id="modal_body" class="modal-body">
+     <!-- NASLOVNA -->
+     <div id="pghb0" class="modalPages active justify-content-center align-items-center" :style="[(0>count) ? {backgroundImage: 'url('+ basePath+ 'coverimgMD.jpg)'} : {backgroundImage: 'url('+ basePath+slideshowImages[count] +')'}]">
+       <button id="onama" class="my-auto" @click="activate()" @click.prevent="count++">O NAMA</button>
+
+       <!-- Slideshow Buttons / Content Between -->
+       <div id="shBtns" class="col">
+         <button class="slideBtns float-left" v-bind:disabled="count === 0" @click.prevent="count--" @click="slide()"><i class="fas fa-chevron-circle-left"></i></button>
+         <button class="slideBtns float-right" v-bind:disabled="count === (slides-1)" @click.prevent="count++" @click="slide()"><i class="fas fa-chevron-circle-right"></i></button>
+       </div>
+
+       <!-- Content Container -->
+       <div class="contentContainer">
+         <!-- Slide1 -->
+         <div class="slideIteratable slide1">
+           <div class="c1"><div>Postati vodeća<br> tvrtka u proizvodnji<br> slastičarskih proizvoda</div></div>
+           <div class="c2"><div>Proširiti se<br> na inozemna<br> tržišta</div></div>
+           <div class="c3"><div>Osvojiti<br> domaće<br> tržište</div></div>
+         </div>
+
+         <!-- Slide2 -->
+         <div class="slideIteratable slide2">
+           <div class="b1">
+             Razvijamo nove recepture.<br>
+             Svakodnevno proizvodimo visokokvalitetne slastičarske proizvode.<br>
+             Trudom naših zaposlenika postajemo sve uspješniji te nastojimo zadržati povjerenje naših kupaca stvaranjem slatkih trenutaka zadovoljstva.
+           </div>
+         </div>
+
+         <!-- Slide3 -->
+         <div class="slideIteratable slide3">
+             Proširiti asortiman do 2021. godine<br>
+             Pronaći novi poslovni prostor do 2020. godine<br>
+             Ostvariti mjesečni profit od 20.000,00 kn do 2020. godine<br>
+             Postati tvrtka koja postavlja nove standarde izvrsnosti u proizvodnji slastičarskih proizvoda u 2020. godini<br>
+         </div>
+       </div>
+
+       <!-- Content not omitted by container -->
+       <!-- Slide 2 -->
+       <img class="nonContainer slide2" src="/upload/ss-ekonomska-bracaradic-dj/images/static3/2432/Image/sweet/assets/imgs/mission05.png" />
+     </div>
+
+     <!-- KATALOG -->
+     <div id="pghb1" class="modalPages">
+       <div class="container-fluid">
+         <!-- Krafne -->
+         <div class="titleAndFoodWrapper">
+           <div class="row d-flex justify-content-center foodTitle">Krafne</div>
+           <div class="row foodSection">
+             <div id="k" class="col-12">
+               <!-- Image Rows Here -->
+             </div>
+          </div>
+         </div>
+
+         <!--Fritule -->
+         <div class="titleAndFoodWrapper">
+           <div class="row d-flex justify-content-center foodTitle">Fritule</div>
+           <div class="row foodSection">
+             <div id="f" class="col-12">
+               <!-- Image Rows Here -->
+             </div>
+          </div>
+         </div>
+
+         <!-- Palacinke -->
+         <div class="titleAndFoodWrapper">
+           <div class="row d-flex justify-content-center foodTitle">Palačinke</div>
+           <div class="row foodSection">
+             <div id="p" class="col-12">
+               <!-- Image Rows Here -->
+             </div>
+          </div>
+         </div>
+
+      </div>
+     </div>
+
+     <!-- KONTAKT -->
+     <div id="pghb2" class="modalPages">
+       <div class="container-fluid my-auto">
+         <div class="row justify-content-center">
+           <!-- Facebook -->
+           <div class="iconContainer">
+             <a href="https://google.com" target="_blank"><i class="fab fa-facebook text-primary"></i></a><br>
+             <span>Click the Icon</span>
+           </div>
+           <!-- Instagram -->
+           <div class="iconContainer">
+             <a href="https://google.com" target="_blank"><i class="fab fa-instagram" id="instagramColor"></i></a><br>
+             <span>Click the Icon</span>
+           </div>
+
+           <!-- Twitter -->
+           <div class="iconContainer">
+             <a href="https://google.com" target="_blank"><i class="fab fa-twitter-square text-primary"></i></a><br>
+             <span>Click the Icon</span>
+           </div>
+         </div>
+
+         <!-- Gmail -->
+         <div class="row justify-content-center">
+           <div id="gmailIconContainer" class="iconContainer">
+             <i class="far fa-envelope text-danger"></i><br>
+             <span>vtsweetplace@gmail.com<span>
+           </div>
+         </div>
+       </div>
+     </div>
+
+   </div>
+
+  </div>
+ </div>
+</div>
+<!-- MODALS.END -->
+
+
+<!-- Modal Trigger -->
+<div class="launchModal row justify-content-center align-self-center" style="z-index: -100;">
+ <button class="btn btn-white" data-toggle="modal" data-target="#myModal">Launch <i class="fas fa-rocket"></i></button>
+</div>
+
+<!-- Style -->
+<style>
+  /* Outside of Modal */
+  .launchModal > button {
+    font-family: 'Dancing Script', cursive;
+    font-size: 80px;
+    color: #002a4c;
+
+    border: 4px solid #00baff;
+    border-radius: 5px;
+
+    padding-bottom: 0px;
+  }
+  .launchModal > button:hover { color: #C71585; }
+
+  /* Make Modal Fullscreen */
+  .modal-dialog {
+    width: 100%;
+    max-width: 100%;
+
+    height: 100%;
+    min-height: 100%;
+
+    margin: 0;
+    padding: 0;
+  }
+  .modal-content {
+    height: auto;
+    min-height: 100%;
+    border: 0;
+    border-radius: 0;
+    padding: 0;
+    margin: 0;
+  }
+
+  /* OverWrite Modal CSS */
+  .modal {
+    padding: 0 !important;
+  }
+  .modal-body {
+    position: relative;
+    padding: 0 !important;
+  }
+
+  /* Header Buttons */
+  .modalHeaderButtons:focus,.modalHeaderButtons:active {
+     outline: none !important;
+     box-shadow: none;
+  }
+  .modalHeaderButtons {
+    color: #002a4c;
+    background-color: white;
+    font-family: serif;
+    font-weight: bold;
+    font-size: 20px;
+  }
+  .modalHeaderButtons:hover {
+    color: #00baff;
+  }
+  .modalHeaderButtons.active {
+    color: #00baff;
+  }
+  /* Pages */
+  .modalPages {
+    display: none;
+  }
+  .modalPages.active {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* NASLOVNA */
+  #pghb0 {
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  #onama {
+    position: absolute;
+    left: 0;
+
+    color: #002a4c;
+    background-color: white;
+    font-family: serif;
+    font-weight: bold;
+    font-size: 90px;
+    border: 3px solid white;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+
+    padding: 10px 40px 10px 40px;
+  }
+  #onama:hover { color: #00baff; }
+
+  /* O NAMA (slideshow) */
+  /* 1.0. Slide Buttons */
+  #shBtns {
+    position: absolute;
+    display: none;
+    padding: 0;
+  }
+  .slideBtns[disabled] { visibility: hidden; }
+  .slideBtns {
+    z-index: 1060;
+
+    border: 0;
+    border-radius: 4px;
+
+    padding: 5px 6px 3px 6px;
+
+    background-color: #9b4dca;
+  }
+  .slideBtns:hover { background-color: #606c76; }
+  .slideBtns > i {
+    color: white;
+    font-size: 40px;
+  }
+  .slideBtns:hover > i {
+    color: #00baff;
+  }
+
+  /* 2.0. Slide Content */
+  .contentContainer { display: none; }
+  .slideIteratable { display: none; }
+  .slideIteratable.active { display: block; }
+  .nonContainer { display: none; }
+
+  /* 2.1. Slide 1 */
+  .slide1 {}
+  .c1 {
+    position: absolute;
+    top: 15%;
+    right: 25%;
+
+    width: 240px;
+    height: 240px;
+
+    display: inline-block;
+    text-align: center;
+
+    color: white;
+    font-size: 25px;
+    border: 3px solid white;
+    border-radius: 50%;
+
+    background: #34e89e;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, #0f3443, #34e89e);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, #0f3443, #34e89e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  }
+  .c1>div {
+    margin: 45px 0 0 0;
+  }
+  .c2 {
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+
+    width: 180px;
+    height: 180px;
+
+    display: inline-block;
+    text-align: center;
+
+    color: white;
+    font-size: 25px;
+    border: 3px solid white;
+    border-radius: 50%;
+
+    background: #34e89e;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to top right, #0f3443, #34e89e);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to top right, #0f3443, #34e89e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  }
+  .c2>div {
+    margin: 30px 0 0 0;
+  }
+  .c3 {
+    position: absolute;
+    bottom: 5%;
+    right: 3%;
+
+    width: 160px;
+    height: 160px;
+
+    display: inline-block;
+    text-align: center;
+
+    color: white;
+    font-size: 25px;
+    border: 3px solid white;
+    border-radius: 50%;
+
+    background: #34e89e;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to top left, #0f3443, #34e89e);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to top left, #0f3443, #34e89e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  }
+  .c3>div {
+    margin: 25px 0 0 0;
+  }
+
+  /* 2.2. Slide 2 */
+  .slide2>div {
+    text-align: center;
+
+    color: white;
+    font-size: 20px;
+  }
+  .b1 {
+    padding-left: 52px;
+  }
+  .nonContainer.slide2 {
+    background-color: white;
+    height: 100%;
+  }
+
+  /* 2.3. Slide 3 */
+  .slide3 {
+    text-align: center;
+
+    color: black;
+    font-size: 20px;
+    border: 3px solid white;
+    border-radius: 6px;
+
+    padding: 8px 16px 8px 16px;
+    background-color: rgba(0,186,255,1);
+  }
+
+  /* KATALOG */
+  #pghb1 {
+    background-color: white;
+  }
+  .titleAndFoodWrapper { /* Container of image section (title, images) */
+    padding-top: 30px;
+    text-align: center;
+    background-color: white;
+  }
+  .foodTitle {
+    color: white;
+    background-color: #00baff;
+
+    font-size: 25px;
+    border-bottom: 2px solid black;
+    border-bottom-style: dashed;
+
+    border-top-left-radius: 50px 20px;
+    border-top-right-radius: 50px 20px;
+  }
+  .foodTitle:hover {
+    background-color: #80ddff;
+  }
+  .foodTitle.active {
+    border-bottom: 0;
+    background-color: #80ddff;
+  }
+  .foodSection {
+    display: none;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+  }
+  /* Food Images Spacing and Positioning css  START: */
+  .col-12 > .foodRow {
+    padding: 50px 0 50px 0;
+  }
+  .col-12 > .foodRow:nth-child(n+2) {
+    padding-top: 0px;
+  }
+  /* Food Images Spacing and Positioning css STOP; */
+  .foodRow {
+    background-color: #dce1e1;
+  }
+  .foodRow > div {
+    width: 300px;
+    height: 300px;
+
+    border: 3px solid black;
+    /*
+    border-left: 2px solid #00baff;
+    border-right: 2px solid #00baff;*/
+  }
+  .foodRow > div > button {
+    background: none;
+  	color: inherit;
+  	border: none;
+  	padding: 0;
+  	font: inherit;
+  	cursor: pointer;
+  	outline: inherit;
+
+    position: relative;
+    left: 133px;
+  }
+  .foodRow > div > button > i {
+    font-size: 20px;
+    padding: 4px;
+
+    border-bottom-left-radius: 5px;
+
+    color: white;
+    background-color: #32a852;
+  }
+  .foodRow > div > button > i:hover {
+    color: #343a40;
+  }
+
+  /* KONTAKT */
+  #pghb2 {
+    background-color: white
+  }
+  #pghb2 > div {
+    background-color: white;
+  }
+  #pghb2 > div > div {
+    padding: 15px 0 15px 0;
+  }
+  #pghb2 > div > div:first-child {
+    background: #20002c;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to top, rgba(203,180,212,.8), rgba(32,0,44,.8));  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to top, rgba(203,180,212,.8), rgba(32,0,44,.8)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  }
+  #pghb2 > div > div:last-child {
+    background: #20002c;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, rgba(203,180,212,.8), rgba(32,0,44,.8));  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, rgba(203,180,212,.8), rgba(32,0,44,.8)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  }
+  .iconContainer {
+    color: white;
+    background-color: rgba(0, 0, 0, .6);
+
+    font-size: 18px;
+    text-align: center;
+
+    padding: 10px;
+    margin: 0 3px 0 3px;
+  }
+  .iconContainer:nth-child(1) {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+  }
+  .iconContainer:nth-child(3) {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+  #gmailIconContainer {
+    border-radius: 5px;
+  }
+  .iconContainer i {
+    font-size: 60px;
+    padding: 5px;
+  }
+  #instagramColor {
+    /*background: -webkit-radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);*/
+    background: -webkit-linear-gradient(bottom left, #fdf497, #fd5949, #d6249f, #285AEB);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+</style>
+
+<!-- Script -->
+<script>
+  /* Vue.js Components */ /* I ll leave this useless component here in memory of great suffering */
+  Vue.component('v-for-images', {
+    props: {
+      imgCount: '',
+      rowLength: '',
+      basePath: '',
+      baseName: ''
+    },
+    render: function(h) {
+      return h(
+        'div',   // tag name
+        {},      // attributes
+        Array.apply(null, { length: (this.imgCount/this.rowLength) }).map((element, index, array) => {   // conventional example: [h('h1', 'header')]
+            // Helper Function, turn HTML to string
+            document.getHTML= function(who, deep) {
+              if(!who || !who.tagName) return '';
+              var txt, ax, el= document.createElement("div");
+              el.appendChild(who.cloneNode(false));
+              txt= el.innerHTML;
+              if(deep){
+                  ax= txt.indexOf('>')+1;
+                  txt= txt.substring(0, ax)+who.innerHTML+ txt.substring(ax);
+              }
+            el= null;
+            return txt;
+            }
+
+            var content = '';
+            for(var i = 0; i < array.length; i++) {
+              var container = document.createElement('div');
+              container.className = "row d-flex justify-content-around";
+              for(var j = 1; j <= this.rowLength; j++) {
+                var img = document.createElement("img");
+                img.src = this.basePath+this.baseName+'/'+this.baseName+j+'.jpg';
+                container.appendChild(img);
+              }
+              return document.getHTML(container, true);
+            }
+        })
+      )
+    }
+  });
+  /* Vue.js Instance */
+  var vm = new Vue({ // vm - ViewModel from MVVM Pattern
+    el: '.modal-body',
+    data: {
+      test: '/upload/ss-ekonomska-bracaradic-dj/images/static3/2432/Image/sweet/assets/imgs/coverimgMD.jpg',
+      slides: 0,
+      count: -1,
+      basePath: '/upload/ss-ekonomska-bracaradic-dj/images/static3/2432/Image/sweet/assets/imgs/',
+      slideshowImages: [
+        'vision.jpg',
+        'gradient01.jpg',
+        'goalsMD.jpg'
+      ],
+      k: 3,
+      f: 6,
+      p: 10,
+      kTitles: [],
+      fTitles: [],
+      pTitles: [],
+    },
+    computed: {},
+    methods: {
+      range : function (start, end) { /* extension that allows better for looping in Vue, Source: https://stackoverflow.com/questions/49715339/how-to-render-v-for-from-particular-index/49715374#49715374 */
+        return Array(end - start + 1).fill().map((_, idx) => start + idx)
+      },
+      activate: function() {
+        $('#onama').remove();
+        $('#shBtns').css('display', 'block');
+        $('.contentContainer').css('display', 'block');
+        $('.slide1').addClass('active');
+      },
+      slide: function() {
+        // Hide Current Slide
+        $('.slideIteratable.active').css('display', 'none').removeClass('active');
+        $('.nonContainer').css('display', 'none');
+
+        // Show Requested Slide
+        $('.slideIteratable').eq(this.count).css('display', 'block').addClass('active');
+        if(this.count == 1) { $('.nonContainer.slide2').css('display', 'block'); }
+      }
+    },
+    mounted: function() {
+      window.addEventListener('resize', this.adjust);
+      $('#myModal').on('shown.bs.modal', function() {
+        vm.slides = (function() {
+          var length = Object.keys(vm.slideshowImages).length;
+          return length;
+        })();
+        //vm.createRow(0, vm.k, 'k', '#k');
+      });
+    }
+  });
+
+  /* Vanilla JS functions */
+  function renderKatalogItems(parent, imgCount, rowLength, basePath, baseName) {
+    var section = parent; // Main container
+    var images = []; // Images array
+    var imagesData =
+      [
+        // Krofne
+        ["CLASSIC DONUT", "6,25"],
+        ["SWEET PLACE", "9,38"],
+        ["KROFNILLA", "6,25"],
+        // Fritule
+        ["MORSKA VILA", "15,63"],
+        ["SAY CHEESE", "15,63"],
+        ["YOGI", "15,63"],
+        ["SUA CHUA", "18,75"],
+        ["LITTLE FRITTLE", "18,75"],
+      	["BLACK MAGIC", "25,00"],
+        // Palacinke
+      	["MAMAREDO", "9,38"],
+      	["LINOLINKE", "12,50"],
+      	["JAMMY LOO", "9,38"],
+      	["KOKONILA", "15,63"],
+      	["PUFFY FLUFFY", "21,88"],
+      	["PANNUKAKKU", "21,88"],
+      	["ZOMBI", "18,75"],
+      	["HEY HAM", "25,00"],
+      	["ČUDESNI KIKI", "28,13"],
+        ["ČOKO-ČINKE", "9,38"]
+      ];
+
+    for(var i = 0; i < imgCount; i++) { // Images
+      // Create Elements
+      var img = document.createElement("div");
+      var imgInfo = document.createElement("i"); // <i class="fas fa-info-circle"></i>
+      var imgInfoButton = document.createElement("button");
+
+      // Set Attributes
+      img.style = 'background-image: url('+basePath+baseName+'/'+baseName+(i+1)+'.jpg); background-size: 300px 300px';
+      imgInfo.className="fas fa-info-circle";
+
+      // Popover
+      imgInfoButton.setAttribute("data-toggle", "popover");
+      imgInfoButton.setAttribute("data-placement", "left");
+      imgInfoButton.setAttribute("data-html", "true");
+      imgInfoButton.setAttribute("title", imagesData[i][0]);
+      imgInfoButton.setAttribute("data-content", "Cijena: "+imagesData[i][1]+"kn");
+
+      // Merge
+      imgInfoButton.appendChild(imgInfo);
+      img.appendChild(imgInfoButton);
+
+      // Store
+      images.push(img);
+    }
+    for(var i = 0; i < (imgCount/rowLength); i++) { // Row containers
+      var foodRow = document.createElement('div');
+      foodRow.className = "row justify-content-around foodRow";
+      for(var j = 0; j < rowLength; j++) { // append Images to Row Containers but check if image exist in array beforehand
+        if(images[j+(i*rowLength)]) {
+          foodRow.appendChild(images[j+(i*rowLength)]);
+        }
+      }
+      section.appendChild(foodRow);
+    }
+  }
+
+  // Click btn that opens Modal
+  $(document).ready(function() { // start jQuery on load
+  renderKatalogItems(document.getElementById("k"), 3, 3, '/upload/ss-ekonomska-bracaradic-dj/images/static3/2432/Image/sweet/assets/imgs/', 'k');
+  renderKatalogItems(document.getElementById("f"), 6, 3, '/upload/ss-ekonomska-bracaradic-dj/images/static3/2432/Image/sweet/assets/imgs/', 'f');
+  renderKatalogItems(document.getElementById("p"), 10, 3, '/upload/ss-ekonomska-bracaradic-dj/images/static3/2432/Image/sweet/assets/imgs/', 'p');
+  $("[data-toggle=popover]").popover(); // Initialize popovers
+
+  /* Slide Up/Down effect */
+  $('.foodTitle').each(function(index) {
+    $('.foodTitle').eq(index).click(function(e) {
+      var me = this;
+      var isActive = $(me).hasClass('active');
+      if(isActive) {
+        $("[data-toggle=popover]").popover('hide'); // close popovers
+      }
+      if(!isActive) {
+        $(me).addClass('active');
+      }
+      $('.foodTitle+.foodSection').eq(index).slideToggle('slow', function() {
+        if($(this).hasClass('d-flex')) {
+          $(this).removeClass('d-flex');
+          $(me).removeClass('active');
+        }
+        else {
+          $(this).addClass('d-flex');
+        }
+      });
+    });
+  });
+
+
+  var modalHeaderButtons = document.querySelectorAll(".modalHeaderButtons");
+  var modalPages = document.querySelectorAll(".modalPages")
+  for(i = 0; i < modalHeaderButtons.length; i++) {
+    modalHeaderButtons[i].addEventListener("click", switchButtonAndPage);
+  }
+
+  function switchButtonAndPage(event) {
+    $("[data-toggle=popover]").popover('hide'); // hide active popovers /* From Page KATALOG */
+    event.preventDefault();
+
+    document.querySelector(".modalHeaderButtons.active").classList.remove("active");
+    document.querySelector(".modalPages.active").classList.remove("active");
+
+    var clickedButton = event.currentTarget;
+    clickedButton.classList.add("active");
+
+    var newPage = document.getElementById("pg"+clickedButton.id);
+    newPage.classList.add("active");
+  }
+
+  }); // end jQuery on load
+
+  $('#myModal').modal();
+</script>
